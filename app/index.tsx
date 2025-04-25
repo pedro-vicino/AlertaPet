@@ -1,110 +1,121 @@
 import { useState } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  Pressable,
-} from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
-export default function InitialScreen() {
+export default function IndexScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  // Função para lidar com o clique nos botões "Entrar" e "Criar Conta"
-  const handleNavigation = () => {
-    // Como a autenticação não precisa funcionar, qualquer valor é considerado "true"
-    router.push('/home'); // Redireciona para a próxima tela
+  // Funções de navegação
+  const handleLogin = () => {
+    router.push('/home'); // Redireciona para a Tela 1 (Home)
+  };
+
+  const handleRegister = () => {
+    router.push('/register'); // Redireciona para a tela de cadastro
+  };
+
+  const handleGuest = () => {
+    router.push('/home'); // Redireciona para a Tela 1 (Home)
   };
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
 
-      {/* Logo */}
-      <Text style={styles.logoText}>AlertaPet</Text>
+      {/* Título */}
+      <Text style={styles.title}>AlertaPet</Text>
 
-      {/* Campo de Email */}
+      {/* Campo: Email */}
       <View style={styles.inputContainer}>
-        <MaterialIcons name="email" size={24} color="#666" style={styles.icon} />
-        <TextInput
-          style={styles.input}
-          placeholder="exemplo@gmail.com"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-      </View>
-
-      {/* Campo de Senha */}
-      <View style={styles.inputContainer}>
-        <MaterialIcons name="lock" size={24} color="#666" style={styles.icon} />
-        <TextInput
-          style={styles.input}
-          placeholder="********"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry={!showPassword}
-        />
-        <Pressable onPress={() => setShowPassword(!showPassword)}>
-          <MaterialIcons
-            name={showPassword ? 'visibility' : 'visibility-off'}
-            size={24}
-            color="#666"
-            style={styles.icon}
+        <Text style={styles.label}>Email</Text>
+        <View style={styles.inputWrapper}>
+          <MaterialIcons name="email" size={20} color="#666" style={styles.inputIcon} />
+          <TextInput
+            style={styles.input}
+            placeholder="exemplo@gmail.com"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
           />
-        </Pressable>
+        </View>
       </View>
 
-      {/* Link "Esqueci minha senha" */}
-      <TouchableOpacity>
-        <Text style={styles.forgotPassword}>ESQUECI MINHA SENHA</Text>
+      {/* Campo: Senha */}
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Senha</Text>
+        <View style={styles.inputWrapper}>
+          <MaterialIcons name="lock" size={20} color="#666" style={styles.inputIcon} />
+          <TextInput
+            style={styles.input}
+            placeholder="Digite sua senha"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={!showPassword}
+          />
+          <TouchableOpacity
+            onPress={() => setShowPassword(!showPassword)}
+            style={styles.eyeIcon}
+          >
+            <MaterialIcons
+              name={showPassword ? 'visibility' : 'visibility-off'}
+              size={20}
+              color="#666"
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* Link "Esqueceu sua senha?" (placeholder, sem funcionalidade) */}
+      <TouchableOpacity style={styles.forgotPassword}>
+        <Text style={styles.forgotPasswordText}>Esqueceu sua senha?</Text>
       </TouchableOpacity>
 
       {/* Botões */}
-      <TouchableOpacity
-        style={[styles.button, styles.primaryButton]}
-        onPress={handleNavigation}
-      >
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>ENTRAR</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[styles.button, styles.primaryButton]}
-        onPress={handleNavigation}
+        style={[styles.button, styles.buttonSecondary]}
+        onPress={handleRegister}
       >
-        <Text style={styles.buttonText}>CRIAR CONTA</Text>
+        <Text style={[styles.buttonText, styles.buttonSecondaryText]}>
+          CRIAR CONTA
+        </Text>
       </TouchableOpacity>
-
-      <Text style={styles.orText}>ou</Text>
 
       <TouchableOpacity
-        style={[styles.button, styles.guestButton]}
-        onPress={() => router.push('/home')}
+        style={[styles.button, styles.buttonSecondary]}
+        onPress={handleGuest}
       >
-        <Text style={styles.buttonText}>CONVIDADO</Text>
+        <Text style={[styles.buttonText, styles.buttonSecondaryText]}>
+          CONVIDADO
+        </Text>
       </TouchableOpacity>
 
-      {/* Rodapé com ícones de redes sociais */}
-      <View style={styles.socialContainer}>
-        <Text style={styles.socialText}>ou entre com</Text>
-        <View style={styles.socialIcons}>
-          <TouchableOpacity>
-            <FontAwesome name="google" size={24} color="#333" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <FontAwesome name="facebook" size={24} color="#333" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <FontAwesome name="instagram" size={24} color="#333" />
-          </TouchableOpacity>
-        </View>
+      {/* Linha "ou entre com" */}
+      <View style={styles.dividerContainer}>
+        <View style={styles.dividerLine} />
+        <Text style={styles.dividerText}>ou entre com</Text>
+        <View style={styles.dividerLine} />
+      </View>
+
+      {/* Botões de redes sociais (placeholders, sem funcionalidade) */}
+      <View style={styles.socialButtons}>
+        <TouchableOpacity style={styles.socialButton}>
+          <Text style={styles.socialButtonText}>G</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.socialButton}>
+          <Text style={styles.socialButtonText}>F</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.socialButton}>
+          <Text style={styles.socialButtonText}>I</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -114,75 +125,103 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    paddingTop: 40,
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 30,
   },
-  logoText: {
-    fontSize: 40,
+  title: {
+    fontSize: 36,
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: 50,
+    textAlign: 'center',
+    marginBottom: 40,
   },
   inputContainer: {
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 5,
+  },
+  inputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 10,
-    marginBottom: 15,
     paddingHorizontal: 10,
-    width: '100%',
   },
-  icon: {
-    marginHorizontal: 5,
+  inputIcon: {
+    marginRight: 10,
   },
   input: {
     flex: 1,
-    height: 50,
     fontSize: 16,
-    color: '#333',
+    paddingVertical: 10,
+  },
+  eyeIcon: {
+    padding: 10,
   },
   forgotPassword: {
-    fontSize: 14,
-    color: '#666',
+    alignItems: 'flex-end',
     marginBottom: 20,
-    alignSelf: 'flex-end',
+  },
+  forgotPasswordText: {
+    fontSize: 14,
+    color: '#007AFF',
   },
   button: {
-    width: '100%',
+    backgroundColor: '#007AFF',
     paddingVertical: 15,
     borderRadius: 25,
     alignItems: 'center',
     marginBottom: 15,
-  },
-  primaryButton: {
-    backgroundColor: '#007AFF',
-  },
-  guestButton: {
-    backgroundColor: '#4DA8FF',
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
   },
-  orText: {
+  buttonSecondary: {
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#007AFF',
+  },
+  buttonSecondaryText: {
+    color: '#007AFF',
+  },
+  dividerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  dividerLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#ccc',
+  },
+  dividerText: {
+    marginHorizontal: 10,
     fontSize: 14,
     color: '#666',
-    marginVertical: 10,
   },
-  socialContainer: {
-    marginTop: 20,
+  socialButtons: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 20,
+  },
+  socialButton: {
+    width: 40,
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 20,
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  socialText: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 10,
-  },
-  socialIcons: {
-    flexDirection: 'row',
-    gap: 20,
+  socialButtonText: {
+    fontSize: 18,
+    color: '#333',
   },
 });

@@ -1,10 +1,19 @@
-import { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 export default function ConfirmationScreen() {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  // Função para redirecionar ao clicar em "Enviar"
+  const handleSubmit = () => {
+    // @ts-ignore - Ignorando temporariamente o erro de tipagem
+    router.push('/success'); // Redireciona para a Tela 4 (Sucesso)
+  };
+
+  // Função para redirecionar ao clicar em "Revisar Chamado"
+  const handleReview = () => {
+    // @ts-ignore - Ignorando temporariamente o erro de tipagem
+    router.push('/review-report'); // Redireciona para a Tela de Revisão de Chamado
+  };
 
   return (
     <View style={styles.container}>
@@ -19,18 +28,17 @@ export default function ConfirmationScreen() {
       {/* Subtítulo */}
       <Text style={styles.subtitle}>Confirme sua identidade</Text>
 
-      {/* Campo: Nome */}
+      {/* Campo: Nome (sem funcionalidade) */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Nome</Text>
         <TextInput
           style={styles.input}
           placeholder="Digite seu nome completo"
-          value={name}
-          onChangeText={setName}
+          editable={false} // Desativa a edição do campo
         />
       </View>
 
-      {/* Campo: Telefone */}
+      {/* Campo: Telefone (sem funcionalidade) */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Telefone</Text>
         <View style={styles.phoneContainer}>
@@ -38,8 +46,7 @@ export default function ConfirmationScreen() {
           <TextInput
             style={styles.phoneInput}
             placeholder="Insira seu número"
-            value={phone}
-            onChangeText={setPhone}
+            editable={false} // Desativa a edição do campo
             keyboardType="phone-pad"
           />
         </View>
@@ -52,10 +59,10 @@ export default function ConfirmationScreen() {
       </View>
 
       {/* Botões */}
-      <TouchableOpacity style={styles.buttonSecondary}>
+      <TouchableOpacity style={styles.buttonSecondary} onPress={handleReview}>
         <Text style={styles.buttonSecondaryText}>REVISAR CHAMADO</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttonPrimary}>
+      <TouchableOpacity style={styles.buttonPrimary} onPress={handleSubmit}>
         <Text style={styles.buttonPrimaryText}>ENVIAR</Text>
       </TouchableOpacity>
     </View>

@@ -6,12 +6,27 @@ import { MaterialIcons } from '@expo/vector-icons';
 export default function HomeScreen() {
   // Função para redirecionar para a Tela 2
   const handleNavigation = () => {
+    // @ts-ignore - Ignorando erro de tipagem, se necessário
     router.push('/new-report'); // Redireciona para a Tela 2
+  };
+
+  // Função para redirecionar para a página de notificações
+  const handleNotifications = () => {
+    // @ts-ignore - Ignorando erro de tipagem, se necessário
+    router.push('/notifications'); // Redireciona para a Tela de Notificações
   };
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+
+      {/* Botão de notificações no canto superior direito */}
+      <TouchableOpacity
+        style={styles.notificationButton}
+        onPress={handleNotifications}
+      >
+        <MaterialIcons name="notifications" size={28} color="#333" />
+      </TouchableOpacity>
 
       {/* Cabeçalho */}
       <Text style={styles.logoText}>AlertaPet</Text>
@@ -61,6 +76,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingHorizontal: 20,
     paddingTop: 40,
+  },
+  notificationButton: {
+    position: 'absolute',
+    top: 50, // Ajustado para ficar abaixo da barra de status
+    right: 20,
+    padding: 10,
+    zIndex: 1000, // Garante que o botão fique acima de outros elementos
+    backgroundColor: '#fff', // Fundo branco para melhor visibilidade
+    borderRadius: 20, // Borda arredondada para estética
+    elevation: 5, // Sombra para Android
+    shadowColor: '#000', // Sombra para iOS
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
   },
   logoText: {
     fontSize: 32,
