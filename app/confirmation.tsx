@@ -1,80 +1,129 @@
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  ScrollView,
+  Alert,
+} from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function ConfirmationScreen() {
-  // Função para redirecionar ao clicar em "Enviar"
-  const handleSubmit = () => {
-    // @ts-ignore - Ignorando temporariamente o erro de tipagem
-    router.push('/success'); // Redireciona para a Tela 4 (Sucesso)
-  };
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [additionalInfo, setAdditionalInfo] = useState('');
 
-  // Função para redirecionar ao clicar em "Revisar Chamado"
-  const handleReview = () => {
-    // @ts-ignore - Ignorando temporariamente o erro de tipagem
-    router.push('/review-report'); // Redireciona para a Tela de Revisão de Chamado
+  const handleSubmit = () => {
+    if (!name || !phone) {
+      Alert.alert(
+        'Campos Obrigatórios',
+        'Por favor, preencha seu nome e telefone para continuar.'
+      );
+      return;
+    }
+
+    // Redireciona para a tela de sucesso
+    router.push('/success');
   };
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
+    <ScrollView style={styles.scrollView}>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
 
-      {/* Título e mensagem */}
-      <Text style={styles.title}>Falta pouco...</Text>
-      <Text style={styles.message}>
-        Insira apenas seu nome e telefone para contato caso alguma informação adicional seja necessária
-      </Text>
+        {/* Título */}
+        <Text style={styles.title}>Confirme seus dados</Text>
+        <Text style={styles.subtitle}>
+          Preencha seus dados para que possamos entrar em contato
+        </Text>
 
-      {/* Subtítulo */}
-      <Text style={styles.subtitle}>Confirme sua identidade</Text>
-
-      {/* Campo: Nome (sem funcionalidade) */}
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Nome</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Digite seu nome completo"
-          editable={false} // Desativa a edição do campo
-        />
-      </View>
-
-      {/* Campo: Telefone (sem funcionalidade) */}
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Telefone</Text>
-        <View style={styles.phoneContainer}>
-          <Text style={styles.phonePrefix}>+55 |</Text>
+        {/* Campo: Nome */}
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Nome completo *</Text>
           <TextInput
-            style={styles.phoneInput}
-            placeholder="Insira seu número"
-            editable={false} // Desativa a edição do campo
+            style={styles.input}
+            placeholder="Digite seu nome"
+            value={name}
+            onChangeText={setName}
+          />
+        </View>
+
+        {/* Campo: Telefone */}
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Telefone *</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="(00) 00000-0000"
+            value={phone}
+            onChangeText={setPhone}
             keyboardType="phone-pad"
           />
         </View>
-      </View>
 
-      {/* Checkbox (placeholder, sem funcionalidade) */}
-      <View style={styles.checkboxContainer}>
-        <View style={styles.checkbox} />
-        <Text style={styles.checkboxText}>Li e concordo com os termos de uso</Text>
-      </View>
+        {/* Campo: Email */}
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Email</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="seu@email.com"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
+        </View>
 
-      {/* Botões */}
-      <TouchableOpacity style={styles.buttonSecondary} onPress={handleReview}>
-        <Text style={styles.buttonSecondaryText}>REVISAR CHAMADO</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.buttonPrimary} onPress={handleSubmit}>
-        <Text style={styles.buttonPrimaryText}>ENVIAR</Text>
-      </TouchableOpacity>
-    </View>
+        {/* Campo: Informações Adicionais */}
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Informações adicionais</Text>
+          <TextInput
+            style={[styles.input, styles.textArea]}
+            placeholder="Horários disponíveis para contato, observações importantes..."
+            value={additionalInfo}
+            onChangeText={setAdditionalInfo}
+            multiline
+            numberOfLines={4}
+            textAlignVertical="top"
+          />
+        </View>
+
+        {/* Botões */}
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[styles.button, styles.cancelButton]}
+            onPress={() => router.back()}
+          >
+            <Text style={styles.cancelButtonText}>VOLTAR</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.button, styles.submitButton]}
+            onPress={handleSubmit}
+          >
+            <Text style={styles.submitButtonText}>CONFIRMAR</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
     paddingHorizontal: 20,
     paddingTop: 40,
+    paddingBottom: 40,
   },
   title: {
     fontSize: 24,
@@ -82,16 +131,10 @@ const styles = StyleSheet.create({
     color: '#333',
     marginBottom: 10,
   },
-  message: {
+  subtitle: {
     fontSize: 16,
     color: '#666',
     marginBottom: 30,
-  },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 20,
   },
   inputContainer: {
     marginBottom: 20,
@@ -105,65 +148,39 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 10,
-    padding: 10,
+    padding: 15,
     fontSize: 16,
   },
-  phoneContainer: {
+  textArea: {
+    height: 100,
+    textAlignVertical: 'top',
+  },
+  buttonContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 10,
-    paddingHorizontal: 10,
+    justifyContent: 'space-between',
+    marginTop: 20,
   },
-  phonePrefix: {
-    fontSize: 16,
-    color: '#666',
-    marginRight: 10,
-  },
-  phoneInput: {
+  button: {
     flex: 1,
-    fontSize: 16,
-    paddingVertical: 10,
-  },
-  checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 30,
-  },
-  checkbox: {
-    width: 20,
-    height: 20,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 3,
-    marginRight: 10,
-  },
-  checkboxText: {
-    fontSize: 14,
-    color: '#666',
-  },
-  buttonSecondary: {
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#007AFF',
     paddingVertical: 15,
     borderRadius: 25,
     alignItems: 'center',
-    marginBottom: 10,
+    marginHorizontal: 5,
   },
-  buttonSecondaryText: {
-    color: '#007AFF',
+  cancelButton: {
+    backgroundColor: '#f8f8f8',
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+  submitButton: {
+    backgroundColor: '#007AFF',
+  },
+  cancelButtonText: {
+    color: '#666',
     fontSize: 16,
     fontWeight: 'bold',
   },
-  buttonPrimary: {
-    backgroundColor: '#007AFF',
-    paddingVertical: 15,
-    borderRadius: 25,
-    alignItems: 'center',
-  },
-  buttonPrimaryText: {
+  submitButtonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',

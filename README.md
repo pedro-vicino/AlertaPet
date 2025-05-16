@@ -30,6 +30,11 @@ O projeto utiliza as seguintes dependências, listadas no arquivo `package.json`
 - **@react-native-picker/picker**: `^2.6.1`
   - Componente de dropdown (usado para selecionar tipo de animal e porte).
 
+### Novas Dependências (Mapa Interativo)
+- **expo-location**: `~16.5.3`
+  - Biblioteca para acesso à geolocalização
+  - Instale com: `npm install expo-location`
+
 ### Instalar dependências
 - **prompt de comando/powershell**: entre no cmd e, dentro da pasta do projeto, utilize (na sequência):
    - npm install (Instala todas as dependências listadas no package.json.)
@@ -41,7 +46,7 @@ O projeto utiliza as seguintes dependências, listadas no arquivo `package.json`
 
    - npm install @react-native-picker/picker (Instala o componente de dropdown para os campos de tipo de animal e porte.)
 
-   - npm install expo-location expo-image-picker (Instala bibliotecas para localização e upload de imagens (posteriormente removidas do projeto).)
+   - npm install expo-location (Instala a biblioteca para geolocalização)
 
 ### Dependências de desenvolvimento (devDependencies)
 - **@babel/core**: `^7.20.0`
@@ -62,3 +67,17 @@ Antes de executar o projeto, você precisa ter o seguinte instalado:
   - Instale globalmente com:
     ```bash
     npm install -g expo-cli
+    ```
+
+## Funcionalidades do Mapa
+
+O aplicativo agora inclui um mapa interativo com as seguintes características:
+- Mapa baseado no OpenStreetMap com estilo CARTO Voyager
+- Marcador personalizado com design moderno
+- Suporte a zoom com roda do mouse
+- Arrastar e soltar do marcador
+- Atualização automática das coordenadas
+- Visualização em tela cheia
+- Controles de zoom intuitivos
+
+Nota: O mapa utiliza o OpenStreetMap e Leaflet que são carregados via CDN, não sendo necessário instalar dependências adicionais para estas funcionalidades.
