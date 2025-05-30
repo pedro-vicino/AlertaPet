@@ -1,83 +1,212 @@
-# AnimaisAbandonados
+# AnimaisAbandonados - AlertaPet
 
-Este é um projeto de aplicativo mobile desenvolvido com **Expo** e **React Native** para ajudar a reportar animais abandonados. O aplicativo permite que o usuário abra um chamado com informações sobre o animal (tipo, porte, descrição) e confirme sua identidade com nome e telefone. O projeto foi estruturado com navegação entre telas usando o `expo-router`.
+Este é um projeto de aplicativo mobile desenvolvido com **Expo** e **React Native** para ajudar no resgate e adoção de animais abandonados. O aplicativo AlertaPet permite que usuários reportem animais abandonados, conheçam animais disponíveis para adoção e saibam mais sobre o trabalho da ONG.
 
-## Estrutura do Projeto
+## 📱 Funcionalidades Principais
 
-O aplicativo possui as seguintes telas:
-- **Tela 0** (`app/index.tsx`): Tela inicial de login (simplificada).
-- **Tela 1** (`app/home.tsx`): Tela principal com botões para navegação.
-- **Tela 2** (`app/new-report.tsx`): Tela para abrir um chamado, com campos para tipo de animal, porte e descrição.
-- **Tela 3** (`app/confirmation.tsx`): Tela de confirmação de identidade, com campos para nome e telefone.
+### Telas Implementadas
+- **Tela Inicial** (`app/index.tsx`): Tela de login simplificada
+- **Home** (`app/home.tsx`): Tela principal com navegação para todas as funcionalidades
+- **Novo Chamado** (`app/new-report.tsx`): Formulário para reportar animais abandonados
+- **Quero Adotar** (`app/adopt.tsx`): Galeria de animais disponíveis para adoção
+- **Detalhes do Animal** (`app/animal-details.tsx`): Informações detalhadas de animais específicos
+- **Sobre a ONG** (`app/about-ong.tsx`): Informações sobre o trabalho da organização
+- **Confirmação** (`app/confirmation.tsx`): Confirmação de identidade para chamados
+- **Notificações** (`app/notifications.tsx`): Sistema de notificações
+- **Outras telas**: Registro, sucesso, revisão de chamados
 
-## Dependências do Projeto
+### Funcionalidades por Tela
 
-O projeto utiliza as seguintes dependências, listadas no arquivo `package.json`:
+#### 🏠 Tela Home
+- Botões de navegação para todas as funcionalidades
+- Interface intuitiva com ícones representativos
+- Seção motivacional com imagem
 
-### Dependências principais
-- **expo**: `~50.0.0` (ou a versão mais recente instalada pelo `create-expo-app@latest`)
-  - Framework principal para desenvolvimento com React Native.
-- **react**: `18.2.0`
-  - Biblioteca principal para construção de interfaces.
-- **react-native**: `0.73.2`
-  - Framework para desenvolvimento de aplicativos nativos.
-- **expo-router**: `^3.4.7`
-  - Biblioteca para navegação baseada em arquivos no Expo.
-- **expo-status-bar**: `~1.11.1`
-  - Componente para gerenciar a barra de status do dispositivo.
-- **@expo/vector-icons**: `^14.0.0`
-  - Biblioteca de ícones (usada para ícones como câmera e localização).
-- **@react-native-picker/picker**: `^2.6.1`
-  - Componente de dropdown (usado para selecionar tipo de animal e porte).
+#### 📞 Novo Chamado
+- Formulário para reportar animais abandonados
+- Campos para tipo de animal, porte e descrição
+- Integração com mapa interativo para localização
 
-### Novas Dependências (Mapa Interativo)
-- **expo-location**: `~16.5.3`
-  - Biblioteca para acesso à geolocalização
-  - Instale com: `npm install expo-location`
+#### 🐾 Quero Adotar
+- Grid responsivo com animais disponíveis
+- Cards com foto, nome, idade e porte
+- Navegação para detalhes (implementado para o exemplo da Maia)
 
-### Instalar dependências
-- **prompt de comando/powershell**: entre no cmd e, dentro da pasta do projeto, utilize (na sequência):
-   - npm install (Instala todas as dependências listadas no package.json.)
+#### 📋 Detalhes do Animal
+- Informações completas do animal
+- Foto em destaque
+- Dados como data de resgate, cor e personalidade
+- Botões para próximas ações
 
-   - npx create-expo-app@latest AnimaisAbandonados;
-     cd AnimaisAbandonados (Cria um novo projeto Expo chamado AnimaisAbandonados e entra na pasta do projeto.)
+#### ℹ️ Sobre a ONG
+- História e missão da organização
+- Informações sobre o trabalho de resgate
+- Campanhas de conscientização
 
-   - npm start run (Inicia o projeto)
+## 🛠 Estrutura Técnica
 
-   - npm install @react-native-picker/picker (Instala o componente de dropdown para os campos de tipo de animal e porte.)
+### Tecnologias Utilizadas
+- **Expo**: `~50.0.0` - Framework principal
+- **React**: `18.2.0` - Biblioteca de interface
+- **React Native**: `0.73.2` - Framework mobile
+- **expo-router**: `^3.4.7` - Sistema de navegação
+- **TypeScript**: `^5.1.3` - Tipagem estática
 
-   - npm install expo-location (Instala a biblioteca para geolocalização)
+### Dependências Principais
+```json
+{
+  "expo": "~50.0.0",
+  "react": "18.2.0",
+  "react-native": "0.73.2",
+  "expo-router": "^3.4.7",
+  "expo-status-bar": "~1.11.1",
+  "@expo/vector-icons": "^14.0.0",
+  "@react-native-picker/picker": "^2.6.1",
+  "expo-location": "~16.5.3"
+}
+```
 
-### Dependências de desenvolvimento (devDependencies)
-- **@babel/core**: `^7.20.0`
-  - Compilador para transformar código JavaScript moderno.
-- **@babel/preset-env**: `^7.20.0`
-  - Preset do Babel para compilar código ES6+.
-- **@types/react**: `~18.2.45`
-  - Tipagens para React (usado com TypeScript).
-- **typescript**: `^5.1.3`
-  - Suporte a TypeScript para tipagem estática.
+### Dependências de Desenvolvimento
+```json
+{
+  "@babel/core": "^7.20.0",
+  "@babel/preset-env": "^7.20.0",
+  "@types/react": "~18.2.45",
+  "typescript": "^5.1.3"
+}
+```
 
-## Pré-requisitos
+## 🗂 Estrutura de Arquivos
 
-Antes de executar o projeto, você precisa ter o seguinte instalado:
-- **Node.js** (versão 18 ou superior recomendada)
-- **npm** (geralmente instalado com o Node.js)
-- **Expo CLI**: Para gerenciar e executar o projeto Expo.
-  - Instale globalmente com:
-    ```bash
-    npm install -g expo-cli
-    ```
+```
+app/
+├── index.tsx              # Tela inicial/login
+├── home.tsx              # Tela principal
+├── new-report.tsx        # Novo chamado
+├── adopt.tsx             # Quero adotar
+├── animal-details.tsx    # Detalhes do animal
+├── about-ong.tsx         # Sobre a ONG
+├── confirmation.tsx      # Confirmação
+├── notifications.tsx     # Notificações
+├── register.tsx          # Registro
+├── success.tsx           # Sucesso
+├── review-report.tsx     # Revisão de chamado
+└── _layout.tsx           # Configuração de rotas
 
-## Funcionalidades do Mapa
+assets/
+├── images/
+│   ├── cachorro.png      # Imagem da home
+│   ├── maia.jpg          # Foto da gatinha Maia
+│   ├── thor.jpg          # Animais para adoção
+│   ├── bob.jpg
+│   ├── rex.jpg
+│   ├── bela.jpg
+│   ├── nala.jpg
+│   ├── sol.jpg
+│   └── ong-volunteer.jpg # Imagem da ONG
+```
 
-O aplicativo agora inclui um mapa interativo com as seguintes características:
-- Mapa baseado no OpenStreetMap com estilo CARTO Voyager
-- Marcador personalizado com design moderno
-- Suporte a zoom com roda do mouse
-- Arrastar e soltar do marcador
-- Atualização automática das coordenadas
+## 🚀 Como Executar o Projeto
+
+### Pré-requisitos
+- **Node.js** (versão 18 ou superior)
+- **npm** ou **yarn**
+- **Expo CLI** instalado globalmente
+
+### Instalação
+```bash
+# 1. Clone ou baixe o projeto
+# 2. Entre na pasta do projeto
+cd AnimaisAbandonados
+
+# 3. Instale as dependências
+npm install
+
+# 4. Instale dependências específicas (se necessário)
+npm install @react-native-picker/picker
+npm install expo-location
+
+# 5. Inicie o projeto
+npm start
+# ou
+npx expo start
+```
+
+### Executar em Dispositivo
+- **Android**: Instale o Expo Go na Play Store
+- **iOS**: Instale o Expo Go na App Store
+- Escaneie o QR code que aparece no terminal
+
+## 🗺 Funcionalidades do Mapa
+
+O aplicativo inclui um mapa interativo com:
+- Baseado no OpenStreetMap (gratuito)
+- Estilo CARTO Voyager
+- Marcadores personalizados
+- Zoom com roda do mouse
+- Arrastar e soltar marcadores
+- Atualização automática de coordenadas
 - Visualização em tela cheia
-- Controles de zoom intuitivos
+- Controles intuitivos
 
-Nota: O mapa utiliza o OpenStreetMap e Leaflet que são carregados via CDN, não sendo necessário instalar dependências adicionais para estas funcionalidades.
+**Nota**: Utiliza Leaflet via CDN, sem necessidade de instalação adicional.
+
+## 📋 Status de Desenvolvimento
+
+### ✅ Implementado
+- [x] Tela inicial e home
+- [x] Sistema de navegação completo
+- [x] Tela de novo chamado
+- [x] Galeria de adoção
+- [x] Detalhes de animais (exemplo: Maia)
+- [x] Página sobre a ONG
+- [x] Interface responsiva
+- [x] Integração com mapas
+
+### 🔄 Em Desenvolvimento
+- [ ] Sistema de autenticação completo
+- [ ] Banco de dados para animais
+- [ ] Sistema de notificações push
+- [ ] Upload de fotos
+- [ ] Processo completo de adoção
+- [ ] Integração com APIs externas
+
+### 🎯 Próximas Funcionalidades
+- [ ] Chat entre usuários e ONG
+- [ ] Sistema de favoritos
+- [ ] Filtros avançados na busca
+- [ ] Histórico de chamados
+- [ ] Dashboard administrativo
+
+## 👥 Contribuindo
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 🐛 Reportar Problemas
+
+Se encontrar bugs ou tiver sugestões, por favor:
+1. Verifique se o problema já não foi reportado
+2. Abra uma issue detalhando:
+   - Passos para reproduzir
+   - Comportamento esperado vs atual
+   - Screenshots se aplicável
+   - Informações do dispositivo/ambiente
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## 🙏 Agradecimentos
+
+- Comunidade Expo e React Native
+- OpenStreetMap pela API gratuita de mapas
+- Ícones fornecidos pelo @expo/vector-icons
+- Todos os colaboradores e apoiadores do projeto
+
+---
+
+**AlertaPet** - Salvando vidas, conectando corações 🐾❤️
