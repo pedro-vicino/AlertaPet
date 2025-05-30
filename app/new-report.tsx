@@ -583,6 +583,6 @@ const styles = StyleSheet.create({
   },
   interactiveMap: {
     flex: 1,
-    border: 'none',
-  },
+    border: 'none'
+  }
 });

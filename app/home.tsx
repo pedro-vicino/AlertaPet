@@ -4,16 +4,30 @@ import { StatusBar } from 'expo-status-bar';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function HomeScreen() {
-  // Função para redirecionar para a Tela 2
-  const handleNavigation = () => {
-    // @ts-ignore - Ignorando erro de tipagem, se necessário
-    router.push('/new-report'); // Redireciona para a Tela 2
+  // Função para redirecionar para novo chamado
+  const handleNewReport = () => {
+    router.push('/new-report');
+  };
+
+  // Função para redirecionar para a página de adoção
+  const handleAdoption = () => {
+    router.push('/adopt');
   };
 
   // Função para redirecionar para a página de notificações
   const handleNotifications = () => {
-    // @ts-ignore - Ignorando erro de tipagem, se necessário
-    router.push('/notifications'); // Redireciona para a Tela de Notificações
+    router.push('/notifications');
+  };
+
+  // Função para animais resgatados (implementar depois)
+  const handleRescuedAnimals = () => {
+    // Implementar navegação futura
+    console.log('Animais resgatados - em desenvolvimento');
+  };
+
+  // Função para redirecionar para sobre a ONG
+  const handleAboutONG = () => {
+    router.push('/about-ong');
   };
 
   return (
@@ -35,21 +49,21 @@ export default function HomeScreen() {
       {/* Botões */}
       <View style={styles.buttonGrid}>
         {/* Linha superior */}
-        <TouchableOpacity style={styles.button} onPress={handleNavigation}>
+        <TouchableOpacity style={styles.button} onPress={handleNewReport}>
           <MaterialIcons name="add-circle-outline" size={40} color="#FF6347" />
           <Text style={styles.buttonText}>Novo Chamado</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleNavigation}>
+        <TouchableOpacity style={styles.button} onPress={handleAdoption}>
           <MaterialIcons name="favorite" size={40} color="#FFD700" />
           <Text style={styles.buttonText}>Quero Adotar</Text>
         </TouchableOpacity>
 
         {/* Linha inferior */}
-        <TouchableOpacity style={styles.button} onPress={handleNavigation}>
+        <TouchableOpacity style={styles.button} onPress={handleRescuedAnimals}>
           <MaterialIcons name="pets" size={40} color="#A9A9A9" />
           <Text style={styles.buttonText}>Animais Resgatados</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleNavigation}>
+        <TouchableOpacity style={styles.button} onPress={handleAboutONG}>
           <MaterialIcons name="info" size={40} color="#9370DB" />
           <Text style={styles.buttonText}>Sobre a ONG</Text>
         </TouchableOpacity>

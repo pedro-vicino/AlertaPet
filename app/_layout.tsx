@@ -6,6 +6,9 @@ export default function RootLayout() {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="home" options={{ title: 'AlertaPet' }} />
       <Stack.Screen name="new-report" options={{ title: 'Novo Chamado' }} />
+      <Stack.Screen name="adopt" options={{ headerShown: false }} />
+      <Stack.Screen name="about-ong" options={{ headerShown: false }} />
+      <Stack.Screen name="animal-details" options={{ headerShown: false }} />
       <Stack.Screen name="confirmation" options={{ title: 'Confirmação' }} />
       <Stack.Screen name="register" options={{ title: 'Criar Conta' }} />
       <Stack.Screen name="success" options={{ title: 'Sucesso' }} />
