@@ -92,18 +92,6 @@ app/
 ├── success.tsx           # Sucesso
 ├── review-report.tsx     # Revisão de chamado
 └── _layout.tsx           # Configuração de rotas
-
-assets/
-├── images/
-│   ├── cachorro.png      # Imagem da home
-│   ├── maia.jpg          # Foto da gatinha Maia
-│   ├── thor.jpg          # Animais para adoção
-│   ├── bob.jpg
-│   ├── rex.jpg
-│   ├── bela.jpg
-│   ├── nala.jpg
-│   ├── sol.jpg
-│   └── ong-volunteer.jpg # Imagem da ONG
 ```
 
 ## 🚀 Como Executar o Projeto
@@ -162,50 +150,6 @@ O aplicativo inclui um mapa interativo com:
 - [x] Página sobre a ONG
 - [x] Interface responsiva
 - [x] Integração com mapas
-
-### 🔄 Em Desenvolvimento
-- [ ] Sistema de autenticação completo
-- [ ] Banco de dados para animais
-- [ ] Sistema de notificações push
-- [ ] Upload de fotos
-- [ ] Processo completo de adoção
-- [ ] Integração com APIs externas
-
-### 🎯 Próximas Funcionalidades
-- [ ] Chat entre usuários e ONG
-- [ ] Sistema de favoritos
-- [ ] Filtros avançados na busca
-- [ ] Histórico de chamados
-- [ ] Dashboard administrativo
-
-## 👥 Contribuindo
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 🐛 Reportar Problemas
-
-Se encontrar bugs ou tiver sugestões, por favor:
-1. Verifique se o problema já não foi reportado
-2. Abra uma issue detalhando:
-   - Passos para reproduzir
-   - Comportamento esperado vs atual
-   - Screenshots se aplicável
-   - Informações do dispositivo/ambiente
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
-## 🙏 Agradecimentos
-
-- Comunidade Expo e React Native
-- OpenStreetMap pela API gratuita de mapas
-- Ícones fornecidos pelo @expo/vector-icons
-- Todos os colaboradores e apoiadores do projeto
 
 ---
 
